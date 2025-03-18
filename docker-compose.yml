@@ -22,8 +22,8 @@ services:
       - .env
     volumes:
       - smart_kassa_db:/var/lib/mysql
-    expose:
-      - 3306
+    ports:
+      - "3306:3306"
 
 volumes:
   smart_kassa_db:
