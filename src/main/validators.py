@@ -1,5 +1,9 @@
 from django.core.exceptions import ValidationError
 
-def validate_14_digits(value):
-    if not value.isdigit() or len(value) != 14:
-        raise ValidationError("Должно содержать ровно 14 цифр.")
+def validate_inn(value):
+    if not value.isdigit():
+        raise ValidationError("ИНН должен содержать только цифры.")
+    if len(value) != 14:
+        raise ValidationError("ИНН должен содержать ровно 14 цифр.")
+    if value.startswith("0"):
+        raise ValidationError("ИНН не должен начинаться с 0.")
