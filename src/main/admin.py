@@ -4,7 +4,7 @@ from django.contrib import admin
 class CustomAdminSite(AdminSite):
     site_header = "Smart Kassa"
     site_title = "Smart Kassa"
-    index_title = "Welcome to Smart Kassa Panel"
+    index_title = "Welcome to Smart Kassa"
 
     def each_context(self, request):
         context = super().each_context(request)
