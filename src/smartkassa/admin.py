@@ -15,7 +15,10 @@ class SmartKassaAdminSite(admin.AdminSite):
 
 
 class ClientAdmin(admin.ModelAdmin):
-    pass
+    search_fields = ("inn", "name", "pinfl", "phone")
+
+    class Media:
+        js = ("admin/js/client_auto_fill.js",)
 
 
 admin_site = SmartKassaAdminSite(name="smartkassa")
