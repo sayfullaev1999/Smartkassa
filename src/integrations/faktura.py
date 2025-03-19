@@ -55,6 +55,6 @@ class FakturaClient:
         return response.json()
 
     def get_company_basic_details(self, company_inn: str):
-        params = {"companyInn": company_inn}
         """Получение информации об организации с указанным ИНН"""
+        params = {"companyInn": company_inn}
         return self.make_request("GET", f"/Api/Company/GetCompanyBasicDetails", params=params)
