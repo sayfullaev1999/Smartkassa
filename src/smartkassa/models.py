@@ -1,7 +1,6 @@
 import datetime
 
 from django.db import models
-from django.core.exceptions import ValidationError
 from .validators import validate_inn
 
 
@@ -42,7 +41,7 @@ class Client(BaseModel):
         super().save(*args, **kwargs)
 
     def parse_birth_date(self):
-        """https://lex.uz/docs/444922"""
+        """https://lex.uz/ru/docs/5955669"""
         if self.pinfl:
             century_index = int(self.pinfl[0])
             day = int(self.pinfl[1:3])

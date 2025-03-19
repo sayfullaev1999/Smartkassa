@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 from environs import Env
 
@@ -21,16 +21,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-import os
-
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
-
-
-
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env.str("SECRET_KEY")
@@ -132,10 +122,31 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
-
-STATIC_URL = 'static/'
+STATIC_URL = "static/"
+STATICFILES_DIRS = [BASE_DIR / "static/"]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REDIS_HOST = env.str("REDIS_HOST")
+REDIS_PORT = env.str("REDIS_PORT")
+REDIS_DB = env.str("REDIS_DB")
+REDIS_URL = f"{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}"
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": f"redis://{REDIS_URL}",
+    }
+}
+
+
+FAKTURA_API_URL = "https://api.faktura.uz/"
+FAKTURA_AUTH_URL = "https://account.faktura.uz/"
+FAKTURA_USERNAME = env.str("FAKTURA_USERNAME")
+FAKTURA_PASSWORD = env.str("FAKTURA_PASSWORD")
+FAKTURA_CLIENT_ID = env.str("FAKTURA_CLIENT_ID")
+FAKTURA_CLIENT_SECRET = env.str("FAKTURA_CLIENT_SECRET")

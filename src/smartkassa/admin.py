@@ -1,7 +1,9 @@
-from django.contrib.admin import AdminSite
 from django.contrib import admin
 
-class CustomAdminSite(AdminSite):
+from .models import Client
+
+
+class SmartKassaAdminSite(admin.AdminSite):
     site_header = "Smart Kassa"
     site_title = "Smart Kassa"
     index_title = "Welcome to Smart Kassa"
@@ -12,4 +14,9 @@ class CustomAdminSite(AdminSite):
         return context
 
 
-admin_site = CustomAdminSite(name="custom_admin")
+class ClientAdmin(admin.ModelAdmin):
+    pass
+
+
+admin_site = SmartKassaAdminSite(name="smartkassa")
+admin_site.register(Client, ClientAdmin)
