@@ -20,12 +20,12 @@ class Client(BaseModel):
 
     inn = models.CharField(max_length=14, unique=True, verbose_name="СТИР", validators=[validate_inn])
     name = models.CharField(max_length=255, verbose_name="Имя пользователя")
-    pinfl = models.CharField(max_length=14, blank=True, unique=True, verbose_name="ПИНФЛ")
-    phone = models.CharField(max_length=20, verbose_name="Телефон")
+    pinfl = models.CharField(max_length=14, blank=True, null=True, verbose_name="ПИНФЛ")
+    phone = models.CharField(max_length=13, verbose_name="Телефон", null=True, blank=True)
     bank_name = models.CharField(max_length=255, verbose_name="Банк")
     address = models.CharField(max_length=255, verbose_name="Адрес")
-    date_birth = models.DateField(blank=True, verbose_name="Дата рождения")
-    gender = models.CharField(max_length=1, choices=Genders.choices, blank=True, verbose_name="Пол")
+    date_birth = models.DateField(null=True, blank=True, verbose_name="Дата рождения")
+    gender = models.CharField(max_length=1, choices=Genders.choices, blank=True, null=True, verbose_name="Пол")
 
     def clean(self):
         if self.phone:
