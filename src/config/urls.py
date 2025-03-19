@@ -3,5 +3,5 @@ from smartkassa.admin import admin_site
 
 
 urlpatterns = [
-    path("", admin_site.urls),
+    path("admin/", admin_site.urls),
 ]
