@@ -40,3 +40,25 @@ class Client(BaseModel):
 
     def __str__(self):
         return self.inn
+
+
+class Device(BaseModel):
+    OWNER_CHOICES = [
+        ("bank", "Банк"),
+        ("smartkassa", "Смарт-касса"),
+        ("personal", "Личное"),
+    ]
+
+    name = models.CharField(max_length=255, verbose_name="Название")
+    is_active = models.BooleanField(verbose_name="Активен", blank=True, default=True)
+    kkm_serial_number = models.CharField(max_length=255, unique=True, verbose_name="ККМ", help_text="Контрольно-кассовая машина")
+    fm_serial_number = models.CharField(max_length=255, unique=True, verbose_name="ФМ", help_text="Фиксальный память")
+    owner_type = models.CharField(max_length=10, choices=OWNER_CHOICES, verbose_name="Тип владельца")
+    client = models.ForeignKey(to=Client, verbose_name="Клиент", on_delete=models.CASCADE, related_name="devices", blank=True)
+
+    class Meta:
+        verbose_name = "Устройства"
+        verbose_name_plural = "Устройствы"
+
+    def __str__(self):
+        return f"{self.name} ({self.kkm_serial_number})"
