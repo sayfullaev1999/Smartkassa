@@ -13,13 +13,14 @@ class BaseModel(models.Model):
 
 
 class Client(BaseModel):
-    inn = models.CharField(max_length=14, unique=True, verbose_name="СТИР", validators=[validate_inn])
-    name = models.CharField(max_length=255, verbose_name="Имя пользователя")
-    pinfl = models.CharField(max_length=14, blank=True, null=True, verbose_name="ПИНФЛ")
-    phone = models.CharField(max_length=13, verbose_name="Телефон", null=True, blank=True)
-    bank_name = models.CharField(max_length=255, verbose_name="Банк")
-    address = models.CharField(max_length=255, verbose_name="Адрес")
-    date_birth = models.DateField(null=True, blank=True, verbose_name="Дата рождения")
+    inn = models.CharField(verbose_name="СТИР", max_length=14, unique=True, validators=[validate_inn])
+    name = models.CharField(verbose_name="Имя пользователя", max_length=255)
+    pinfl = models.CharField(verbose_name="ПИНФЛ", max_length=14, blank=True, null=True)
+    phone = models.CharField(verbose_name="Телефон", max_length=13, null=True, blank=True)
+    bank_name = models.CharField(verbose_name="Банк", max_length=255)
+    address = models.CharField(verbose_name="Адрес", max_length=255)
+    balance = models.DecimalField(verbose_name="Баланс", max_digits=20, decimal_places=2, default=0)
+    date_birth = models.DateField(verbose_name="Дата рождения", null=True, blank=True)
 
     class Meta:
         verbose_name = "Клиент"
@@ -49,12 +50,18 @@ class Device(BaseModel):
         ("personal", "Личное"),
     ]
 
-    name = models.CharField(max_length=255, verbose_name="Название")
+    name = models.CharField(verbose_name="Название", max_length=255)
     is_active = models.BooleanField(verbose_name="Активен", blank=True, default=True)
-    kkm_serial_number = models.CharField(max_length=255, unique=True, verbose_name="ККМ", help_text="Контрольно-кассовая машина")
-    fm_serial_number = models.CharField(max_length=255, verbose_name="ФМ", blank=True, null=True, help_text="Фиксальный память")
-    owner_type = models.CharField(max_length=10, choices=OWNER_CHOICES, verbose_name="Тип владельца")
-    client = models.ForeignKey(to=Client, verbose_name="Клиент", on_delete=models.CASCADE, related_name="devices", blank=True)
+    kkm_serial_number = models.CharField(
+        verbose_name="ККМ", max_length=255, unique=True, help_text="Контрольно-кассовая машина"
+    )
+    fm_serial_number = models.CharField(
+        verbose_name="ФМ", max_length=255, blank=True, null=True, help_text="Фиксальный память"
+    )
+    owner_type = models.CharField(verbose_name="Тип владельца", max_length=10, choices=OWNER_CHOICES)
+    client = models.ForeignKey(
+        verbose_name="Клиент", to=Client, on_delete=models.CASCADE, related_name="devices", blank=True
+    )
 
     class Meta:
         verbose_name = "Устройства"
@@ -62,3 +69,17 @@ class Device(BaseModel):
 
     def __str__(self):
         return f"{self.name} ({self.kkm_serial_number})"
+
+
+class BalanceTransaction(BaseModel):
+    client = models.ForeignKey(verbose_name="Клиент", to=Client, on_delete=models.CASCADE, related_name="transactions")
+    amount = models.DecimalField(verbose_name="Сумма", max_digits=20, decimal_places=2)
+    comment = models.CharField(verbose_name="Комментарий", max_length=255)
+
+    class Meta:
+        verbose_name = "Транзакция по счету клиента"
+        verbose_name_plural = "Транзакции по счету клиентов"
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.client} - {self.amount}"
