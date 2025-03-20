@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Client
+from .models import Client, Device
 
 
 class SmartKassaAdminSite(admin.AdminSite):
@@ -21,5 +21,10 @@ class ClientAdmin(admin.ModelAdmin):
         js = ("admin/js/client_auto_fill.js",)
 
 
+class DeviceAdmin(admin.ModelAdmin):
+    pass
+
+
 admin_site = SmartKassaAdminSite(name="smartkassa")
 admin_site.register(Client, ClientAdmin)
+admin_site.register(Device, DeviceAdmin)
