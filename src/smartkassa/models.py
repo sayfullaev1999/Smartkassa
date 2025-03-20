@@ -52,7 +52,7 @@ class Device(BaseModel):
     name = models.CharField(max_length=255, verbose_name="Название")
     is_active = models.BooleanField(verbose_name="Активен", blank=True, default=True)
     kkm_serial_number = models.CharField(max_length=255, unique=True, verbose_name="ККМ", help_text="Контрольно-кассовая машина")
-    fm_serial_number = models.CharField(max_length=255, unique=True, verbose_name="ФМ", help_text="Фиксальный память")
+    fm_serial_number = models.CharField(max_length=255, verbose_name="ФМ", blank=True, null=True, help_text="Фиксальный память")
     owner_type = models.CharField(max_length=10, choices=OWNER_CHOICES, verbose_name="Тип владельца")
     client = models.ForeignKey(to=Client, verbose_name="Клиент", on_delete=models.CASCADE, related_name="devices", blank=True)
 
