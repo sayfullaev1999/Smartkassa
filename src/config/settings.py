@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
+from django.utils.translation import gettext_lazy as _
 from pathlib import Path
 from environs import Env
 
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -69,7 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
+                'django.template.context_processors.i18n',
             ],
         },
     },
@@ -115,11 +117,12 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
+USE_L10N = True
 
 USE_TZ = True
 
@@ -157,3 +160,11 @@ FAKTURA_USERNAME = env.str("FAKTURA_USERNAME")
 FAKTURA_PASSWORD = env.str("FAKTURA_PASSWORD")
 FAKTURA_CLIENT_ID = env.str("FAKTURA_CLIENT_ID")
 FAKTURA_CLIENT_SECRET = env.str("FAKTURA_CLIENT_SECRET")
+
+
+LANGUAGES = [
+    ("en", _("English")),
+    ("ru", _("Russian")),
+]
+
+LOCALE_PATHS = [BASE_DIR / "locale"]

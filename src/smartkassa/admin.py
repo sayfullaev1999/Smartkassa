@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.contrib.auth.models import User, Group
+from django.utils.translation import gettext_lazy as _
 
 from .filters import BalanceFilter
 from .inlines import DeviceInline
@@ -7,9 +7,9 @@ from .models import Client, Device, BalanceTransaction
 
 
 class SmartKassaAdminSite(admin.AdminSite):
-    site_header = "Smart Kassa"
-    site_title = "Smart Kassa"
-    index_title = "Welcome to Smart Kassa"
+    site_header = _("Smart Kassa")
+    site_title = _("Smart Kassa")
+    index_title = _("Welcome to Smart Kassa")
 
     def each_context(self, request):
         context = super().each_context(request)
@@ -20,7 +20,7 @@ class SmartKassaAdminSite(admin.AdminSite):
 class ClientAdmin(admin.ModelAdmin):
     list_display = ("inn", "name", "pinfl", "balance", "phone", "bank_name", "address", "created_at")
     search_fields = ("inn", "name", "pinfl", "phone", "bank_name", "address")
-    list_filter = (BalanceFilter, )
+    list_filter = (BalanceFilter,)
     exclude = ("balance",)
     inlines = [DeviceInline]
 
@@ -30,7 +30,7 @@ class ClientAdmin(admin.ModelAdmin):
 
 class BalanceTransactionAdmin(admin.ModelAdmin):
     list_display = ("client", "amount", "comment", "created_at")
-    search_fields = ("client", "amount", )
+    search_fields = ("client", "amount")
     date_hierarchy = "created_at"
 
     def has_add_permission(self, request):
@@ -50,7 +50,7 @@ class DeviceAdmin(admin.ModelAdmin):
     list_display = ("name", "kkm_serial_number", "fm_serial_number", "owner_type", "client")
     list_filter = ("is_active", "owner_type")
     search_fields = ("name", "kkm_serial_number", "fm_serial_number")
-    readonly_fields = ("client", )
+    readonly_fields = ("client",)
 
 
 admin_site = SmartKassaAdminSite(name="smartkassa")
