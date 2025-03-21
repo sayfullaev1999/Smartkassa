@@ -1,0 +1,148 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-21 12:51+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+#: config/settings.py:165
+msgid "English"
+msgstr "Английский"
+
+#: config/settings.py:166
+msgid "Russian"
+msgstr "Русский"
+
+#: smartkassa/admin.py:10 smartkassa/admin.py:11 smartkassa/models.py:50
+msgid "Smart Kassa"
+msgstr "Смарт Касса"
+
+#: smartkassa/admin.py:12
+msgid "Welcome to Smart Kassa"
+msgstr "Добро пожаловать в Смарт Касса"
+
+#: smartkassa/models.py:9
+msgid "Created at"
+msgstr "Дата создания"
+
+#: smartkassa/models.py:10
+msgid "Updated at"
+msgstr "Дата обновления"
+
+#: smartkassa/models.py:17
+msgid "TIN"
+msgstr "ИНН"
+
+#: smartkassa/models.py:18 smartkassa/models.py:54
+msgid "Name"
+msgstr "Имя"
+
+#: smartkassa/models.py:19
+msgid "PINFL"
+msgstr "ПИНФЛ"
+
+#: smartkassa/models.py:20
+msgid "Phone"
+msgstr "Телефон"
+
+#: smartkassa/models.py:21 smartkassa/models.py:49
+msgid "Bank"
+msgstr "Банк"
+
+#: smartkassa/models.py:22
+msgid "Address"
+msgstr "Адресс"
+
+#: smartkassa/models.py:23
+msgid "Balance"
+msgstr "Баланс"
+
+#: smartkassa/models.py:24
+msgid "Date of birth"
+msgstr "Дата рождения"
+
+#: smartkassa/models.py:27 smartkassa/models.py:64 smartkassa/models.py:77
+msgid "Client"
+msgstr "Клиент"
+
+#: smartkassa/models.py:28
+msgid "Clients"
+msgstr "Клиенты"
+
+#: smartkassa/models.py:51
+msgid "Personal"
+msgstr ""
+
+#: smartkassa/models.py:55
+msgid "Active"
+msgstr "Активный"
+
+#: smartkassa/models.py:57
+msgid "KKM"
+msgstr "ККМ"
+
+#: smartkassa/models.py:57
+msgid "Cash register machine"
+msgstr "Контрольно-кассовая машина"
+
+#: smartkassa/models.py:60
+msgid "FM"
+msgstr "ФМ"
+
+#: smartkassa/models.py:60
+msgid "Fiscal memory"
+msgstr "Фискальная память"
+
+#: smartkassa/models.py:62
+msgid "Owner type"
+msgstr "Тип владельца"
+
+#: smartkassa/models.py:68
+msgid "Device"
+msgstr "Устройство"
+
+#: smartkassa/models.py:69
+msgid "Devices"
+msgstr "Устройствы"
+
+#: smartkassa/models.py:79
+msgid "Amount"
+msgstr "Сумма"
+
+#: smartkassa/models.py:80
+msgid "Comment"
+msgstr "Комментарий"
+
+#: smartkassa/models.py:83
+msgid "Balance transaction"
+msgstr "Балансовая транзакция"
+
+#: smartkassa/models.py:84
+msgid "Balance transactions"
+msgstr "Балансовые транзакции"
+
+#: smartkassa/validators.py:7
+msgid "INN must contain only digits."
+msgstr "ИНН должен содержать только цифры."
+
+#: smartkassa/validators.py:9
+msgid "INN must be either 9 or 14 digits long."
+msgstr "ИНН должен содержать 9 или 14 цифр."
+
+#: smartkassa/validators.py:11
+msgid "INN must not start with 0."
+msgstr "ИНН не должен начинаться с 0."

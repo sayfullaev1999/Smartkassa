@@ -1,11 +1,15 @@
 from django.contrib import admin
-from .models import Client, Device
+from django.utils.translation import gettext_lazy as _
+
+from .filters import BalanceFilter
+from .inlines import DeviceInline
+from .models import Client, Device, BalanceTransaction
 
 
 class SmartKassaAdminSite(admin.AdminSite):
-    site_header = "Smart Kassa"
-    site_title = "Smart Kassa"
-    index_title = "Welcome to Smart Kassa"
+    site_header = _("Smart Kassa")
+    site_title = _("Smart Kassa")
+    index_title = _("Welcome to Smart Kassa")
 
     def each_context(self, request):
         context = super().each_context(request)
@@ -13,23 +17,30 @@ class SmartKassaAdminSite(admin.AdminSite):
         return context
 
 
-class DeviceInline(admin.TabularInline):
-    model = Device
-    extra = 0
-
-    def save_model(self, request, obj, form, change):
-        if not obj.client:
-            obj.client = form.instance
-        super().save_model(request, obj, form, change)
-
-
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ("inn", "name", "pinfl", "phone", "bank_name", "address")
+    list_display = ("inn", "name", "pinfl", "balance", "phone", "bank_name", "address", "created_at")
     search_fields = ("inn", "name", "pinfl", "phone", "bank_name", "address")
+    list_filter = (BalanceFilter,)
+    exclude = ("balance",)
     inlines = [DeviceInline]
 
     class Media:
         js = ("admin/js/client_auto_fill.js",)
+
+
+class BalanceTransactionAdmin(admin.ModelAdmin):
+    list_display = ("client", "amount", "comment", "created_at")
+    search_fields = ("client", "amount")
+    date_hierarchy = "created_at"
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
 
 
 class DeviceAdmin(admin.ModelAdmin):
@@ -39,8 +50,10 @@ class DeviceAdmin(admin.ModelAdmin):
     list_display = ("name", "kkm_serial_number", "fm_serial_number", "owner_type", "client")
     list_filter = ("is_active", "owner_type")
     search_fields = ("name", "kkm_serial_number", "fm_serial_number")
+    readonly_fields = ("client",)
 
 
 admin_site = SmartKassaAdminSite(name="smartkassa")
 admin_site.register(Client, ClientAdmin)
+admin_site.register(BalanceTransaction, BalanceTransactionAdmin)
 admin_site.register(Device, DeviceAdmin)
