@@ -62,3 +62,17 @@ class Device(BaseModel):
 
     def __str__(self):
         return f"{self.name} ({self.kkm_serial_number})"
+
+
+class Service(BaseModel):
+    name = models.CharField(max_length=255, verbose_name="Название услуги")
+    description = models.TextField(blank=True, null=True, verbose_name="Описание услуги")
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена")
+    is_active = models.BooleanField(default=True, verbose_name="Активность")
+
+    class Meta:
+        verbose_name = "Услуга"
+        verbose_name_plural = "Услуги"
+
+    def __str__(self):
+        return f"{self.name} - {self.price} сум"
