@@ -51,7 +51,7 @@ class FakturaClient:
         }
         url = f"{self.API_URL}{endpoint}"
 
-        response = requests.request(method, url, headers=headers, json=data, params=params)
+        response = requests.request(method, url, headers=headers, json=data, params=params, timeout=(5, 15))
         return response.json()
 
     def get_company_basic_details(self, company_inn: str):

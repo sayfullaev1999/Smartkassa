@@ -30,6 +30,35 @@ services:
     restart: always
     ports:
       - "6379:6379"
+  celery:
+    container_name: "smart-kassa-celery"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    command: >
+      sh -c "cd src && celery -A config worker --loglevel=info"
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - db
+      - web
 
+  celery-beat:
+    container_name: "smart-kassa-celery-beat"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    command: >
+      sh -c "cd src && celery -A config beat --loglevel=info --scheduler django_celery_beat.schedulers.DatabaseScheduler"
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - db
+      - web
+      - celery
 volumes:
   smart_kassa_db:

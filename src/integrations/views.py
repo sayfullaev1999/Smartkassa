@@ -1,3 +1,4 @@
+import requests
 from django.core.exceptions import ValidationError
 from django.http import JsonResponse
 
@@ -13,9 +14,16 @@ def get_company_info_by_inn(request, inn: str):
         return JsonResponse({"success": False, "error": str(exp.message)})
 
     faktura = FakturaClient()
-    company_info = faktura.get_company_basic_details(inn)
+    try:
+        company_info = faktura.get_company_basic_details(inn)
 
-    if company_info and company_info.get("CompanyInn", None):
-        company_info["BirthDate"] = parse_birth_date(company_info.get("Pinfl"))
-        return JsonResponse({"success": True, **company_info})
-    return JsonResponse({"success": False, "error": "Не удалось найти организацию!"})
+        if company_info and company_info.get("CompanyInn", None):
+            company_info["BirthDate"] = parse_birth_date(company_info.get("Pinfl"))
+            return JsonResponse({"success": True, **company_info})
+        return JsonResponse({"success": False, "error": "Не удалось найти организацию!"})
+    except requests.exceptions.ConnectTimeout:
+        return JsonResponse({"success": False, "error": f"Сервер {faktura.API_URL} не отвечает (таймаут подключения)."})
+    except requests.exceptions.ReadTimeout:
+        return JsonResponse(
+            {"success": False, "error": f"Сервер {faktura.API_URL} долго не отвечает (таймаут ожидания ответа)."}
+        )
