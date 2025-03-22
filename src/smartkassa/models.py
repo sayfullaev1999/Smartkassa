@@ -90,9 +90,7 @@ class BalanceTransaction(BaseModel):
 
 class Service(BaseModel):
     name = models.CharField(verbose_name=_("Name"), max_length=255)
-    description = models.TextField(verbose_name=_("Description"), blank=True, null=True)
     price = models.DecimalField(verbose_name=_("Price"), max_digits=10, decimal_places=2)
-    is_active = models.BooleanField(verbose_name=_("Active"), default=True)
 
     class Meta:
         verbose_name = _("Service")
