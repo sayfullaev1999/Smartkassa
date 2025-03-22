@@ -54,9 +54,11 @@ class DeviceAdmin(admin.ModelAdmin):
 
 
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ("name", "price", "is_active", "created_at")
-    list_filter = ("is_active", )
-    search_fields = ("name", "description")
+    list_display = ("name", "price", "created_at")
+    search_fields = ("name", )
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 admin_site = SmartKassaAdminSite(name="smartkassa")

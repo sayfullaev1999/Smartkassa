@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-22 14:45+0500\n"
+"POT-Creation-Date: 2025-03-22 15:14+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,7 @@ msgstr "Английский"
 msgid "Russian"
 msgstr "Русский"
 
-#: smartkassa/admin.py:10 smartkassa/admin.py:11 smartkassa/models.py:50
+#: smartkassa/admin.py:10 smartkassa/admin.py:11 smartkassa/models.py:51
 msgid "Smart Kassa"
 msgstr "Смарт Касса"
 
@@ -35,132 +35,128 @@ msgstr "Смарт Касса"
 msgid "Welcome to Smart Kassa"
 msgstr "Добро пожаловать в Смарт Касса"
 
-#: smartkassa/models.py:9
+#: smartkassa/models.py:10
 msgid "Created at"
 msgstr "Дата создания"
 
-#: smartkassa/models.py:10
+#: smartkassa/models.py:11
 msgid "Updated at"
 msgstr "Дата обновления"
 
-#: smartkassa/models.py:17
+#: smartkassa/models.py:18
 msgid "TIN"
 msgstr "ИНН"
 
-#: smartkassa/models.py:18 smartkassa/models.py:54
+#: smartkassa/models.py:19 smartkassa/models.py:55 smartkassa/models.py:93
 msgid "Name"
 msgstr "Имя"
 
-#: smartkassa/models.py:19
+#: smartkassa/models.py:20
 msgid "PINFL"
 msgstr "ПИНФЛ"
 
-#: smartkassa/models.py:20
+#: smartkassa/models.py:21
 msgid "Phone"
 msgstr "Телефон"
 
-#: smartkassa/models.py:21 smartkassa/models.py:49
+#: smartkassa/models.py:22 smartkassa/models.py:50
 msgid "Bank"
 msgstr "Банк"
 
-#: smartkassa/models.py:22
+#: smartkassa/models.py:23
 msgid "Address"
 msgstr "Адресс"
 
-#: smartkassa/models.py:23
+#: smartkassa/models.py:24
 msgid "Balance"
 msgstr "Баланс"
 
-#: smartkassa/models.py:24
+#: smartkassa/models.py:25
 msgid "Date of birth"
 msgstr "Дата рождения"
 
-#: smartkassa/models.py:27 smartkassa/models.py:64 smartkassa/models.py:77
-#: smartkassa/models.py:107
+#: smartkassa/models.py:28 smartkassa/models.py:65 smartkassa/models.py:78
+#: smartkassa/models.py:110
 msgid "Client"
 msgstr "Клиент"
 
-#: smartkassa/models.py:28
+#: smartkassa/models.py:29
 msgid "Clients"
 msgstr "Клиенты"
 
-#: smartkassa/models.py:51
+#: smartkassa/models.py:52
 msgid "Personal"
-msgstr ""
+msgstr "Личное"
 
-#: smartkassa/models.py:55 smartkassa/models.py:95
+#: smartkassa/models.py:56
 msgid "Active"
 msgstr "Активный"
 
-#: smartkassa/models.py:57
+#: smartkassa/models.py:58
 msgid "KKM"
 msgstr "ККМ"
 
-#: smartkassa/models.py:57
+#: smartkassa/models.py:58
 msgid "Cash register machine"
 msgstr "Контрольно-кассовая машина"
 
-#: smartkassa/models.py:60
+#: smartkassa/models.py:61
 msgid "FM"
 msgstr "ФМ"
 
-#: smartkassa/models.py:60
+#: smartkassa/models.py:61
 msgid "Fiscal memory"
 msgstr "Фискальная память"
 
-#: smartkassa/models.py:62
+#: smartkassa/models.py:63
 msgid "Owner type"
 msgstr "Тип владельца"
 
-#: smartkassa/models.py:68
+#: smartkassa/models.py:69
 msgid "Device"
 msgstr "Устройство"
 
-#: smartkassa/models.py:69
+#: smartkassa/models.py:70
 msgid "Devices"
 msgstr "Устройствы"
 
-#: smartkassa/models.py:79
+#: smartkassa/models.py:80
 msgid "Amount"
 msgstr "Сумма"
 
-#: smartkassa/models.py:80
+#: smartkassa/models.py:81
 msgid "Comment"
 msgstr "Комментарий"
 
-#: smartkassa/models.py:83
+#: smartkassa/models.py:84
 msgid "Balance transaction"
 msgstr "Балансовая транзакция"
 
-#: smartkassa/models.py:84
+#: smartkassa/models.py:85
 msgid "Balance transactions"
 msgstr "Балансовые транзакции"
-
-#: smartkassa/models.py:93
-msgid "Description"
-msgstr "Описание"
 
 #: smartkassa/models.py:94
 msgid "Price"
 msgstr "Цена"
 
-#: smartkassa/models.py:98 smartkassa/models.py:106
+#: smartkassa/models.py:97 smartkassa/models.py:106
 msgid "Service"
 msgstr "Услуга"
 
-#: smartkassa/models.py:99
+#: smartkassa/models.py:98
 msgid "Services"
 msgstr "Услуги"
 
-#: smartkassa/models.py:108
+#: smartkassa/models.py:111
 msgid "Price at usage"
 msgstr "Цена при использовании"
 
-#: smartkassa/models.py:111
+#: smartkassa/models.py:114
 msgid "Client service"
 msgstr "Услуга клиента"
 
-#: smartkassa/models.py:112
+#: smartkassa/models.py:115
 msgid "Client services"
 msgstr "Услуги клиента"
 
