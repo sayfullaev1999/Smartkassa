@@ -89,14 +89,32 @@ class BalanceTransaction(BaseModel):
 
 
 class Service(BaseModel):
-    name = models.CharField(max_length=255, verbose_name="Название услуги")
-    description = models.TextField(blank=True, null=True, verbose_name="Описание услуги")
-    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена")
-    is_active = models.BooleanField(default=True, verbose_name="Активность")
+    name = models.CharField(verbose_name=_("Name"), max_length=255)
+    description = models.TextField(verbose_name=_("Description"), blank=True, null=True)
+    price = models.DecimalField(verbose_name=_("Price"), max_digits=10, decimal_places=2)
+    is_active = models.BooleanField(verbose_name=_("Active"), default=True)
 
     class Meta:
-        verbose_name = "Услуга"
-        verbose_name_plural = "Услуги"
+        verbose_name = _("Service")
+        verbose_name_plural = _("Services")
 
     def __str__(self):
-        return f"{self.name} - {self.price} сум"
+        return f"{self.name}"
+
+
+class ClientService(BaseModel):
+    service = models.ForeignKey(verbose_name=_("Service"), to=Service, on_delete=models.CASCADE, related_name="clients")
+    client = models.ForeignKey(verbose_name=_("Client"), to=Client, on_delete=models.CASCADE, related_name="services")
+    price_at_usage = models.DecimalField(_("Price at usage"), max_digits=10, decimal_places=2)
+
+    class Meta:
+        verbose_name = _("Client service")
+        verbose_name_plural = _("Client services")
+
+    def save(self, *args, **kwargs):
+        if self.pk is None:
+            self.price_at_usage = self.service.price
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.service} - {self.price_at_usage}"

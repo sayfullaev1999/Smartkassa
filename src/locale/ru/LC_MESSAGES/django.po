@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-21 12:51+0500\n"
+"POT-Creation-Date: 2025-03-22 14:45+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
-#: config/settings.py:165
+#: config/settings.py:166
 msgid "English"
 msgstr "Английский"
 
-#: config/settings.py:166
+#: config/settings.py:167
 msgid "Russian"
 msgstr "Русский"
 
@@ -76,6 +76,7 @@ msgid "Date of birth"
 msgstr "Дата рождения"
 
 #: smartkassa/models.py:27 smartkassa/models.py:64 smartkassa/models.py:77
+#: smartkassa/models.py:107
 msgid "Client"
 msgstr "Клиент"
 
@@ -87,7 +88,7 @@ msgstr "Клиенты"
 msgid "Personal"
 msgstr ""
 
-#: smartkassa/models.py:55
+#: smartkassa/models.py:55 smartkassa/models.py:95
 msgid "Active"
 msgstr "Активный"
 
@@ -134,6 +135,34 @@ msgstr "Балансовая транзакция"
 #: smartkassa/models.py:84
 msgid "Balance transactions"
 msgstr "Балансовые транзакции"
+
+#: smartkassa/models.py:93
+msgid "Description"
+msgstr "Описание"
+
+#: smartkassa/models.py:94
+msgid "Price"
+msgstr "Цена"
+
+#: smartkassa/models.py:98 smartkassa/models.py:106
+msgid "Service"
+msgstr "Услуга"
+
+#: smartkassa/models.py:99
+msgid "Services"
+msgstr "Услуги"
+
+#: smartkassa/models.py:108
+msgid "Price at usage"
+msgstr "Цена при использовании"
+
+#: smartkassa/models.py:111
+msgid "Client service"
+msgstr "Услуга клиента"
+
+#: smartkassa/models.py:112
+msgid "Client services"
+msgstr "Услуги клиента"
 
 #: smartkassa/validators.py:7
 msgid "INN must contain only digits."

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Device
+from .models import Device, ClientService
 
 
 class DeviceInline(admin.TabularInline):
@@ -7,7 +7,16 @@ class DeviceInline(admin.TabularInline):
     extra = 0
     classes = ("collapse",)
 
-    def save_model(self, request, obj, form, change):
-        if not obj.client:
-            obj.client = form.instance
-        super().save_model(request, obj, form, change)
+
+class ClientServiceInline(admin.TabularInline):
+    model = ClientService
+    extra = 0
+    classes = ("collapse",)
+    fields = ("service",)
+    readonly_fields = ("created_at",)
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False

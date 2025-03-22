@@ -2,8 +2,8 @@ from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
 from .filters import BalanceFilter
-from .inlines import DeviceInline
-from .models import Client, Device, BalanceTransaction
+from .inlines import DeviceInline, ClientServiceInline
+from .models import Client, Device, BalanceTransaction, Service
 
 
 class SmartKassaAdminSite(admin.AdminSite):
@@ -22,7 +22,7 @@ class ClientAdmin(admin.ModelAdmin):
     search_fields = ("inn", "name", "pinfl", "phone", "bank_name", "address")
     list_filter = (BalanceFilter,)
     exclude = ("balance",)
-    inlines = [DeviceInline]
+    inlines = [DeviceInline, ClientServiceInline]
 
     class Media:
         js = ("admin/js/client_auto_fill.js",)
@@ -53,7 +53,14 @@ class DeviceAdmin(admin.ModelAdmin):
     readonly_fields = ("client",)
 
 
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = ("name", "price", "is_active", "created_at")
+    list_filter = ("is_active", )
+    search_fields = ("name", "description")
+
+
 admin_site = SmartKassaAdminSite(name="smartkassa")
 admin_site.register(Client, ClientAdmin)
 admin_site.register(BalanceTransaction, BalanceTransactionAdmin)
 admin_site.register(Device, DeviceAdmin)
+admin_site.register(Service, ServiceAdmin)
